@@ -2,13 +2,8 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
 	"name": "Node.js & TypeScript",
-	// "workspaceFolder": "/workspace",
-	// "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-	"features": {
-		"ghcr.io/devcontainers-extra/features/pnpm:2": {}
-	}
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
