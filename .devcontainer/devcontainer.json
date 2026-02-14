@@ -7,18 +7,17 @@
 		"ghcr.io/itsmechlark/features/postgresql:1": {},
 		"ghcr.io/duduribeiro/devcontainer-features/tmux:1": {}
 	},
-	"mounts": [
-		{
-			"source": "nextPlayGround",
-			"target": "/var/lib/postgresql/data",
-			"type": "volume"
-		}
-	],
+	// "mounts": [
+	// 	{
+	// 		"source": "nextPlayGround",
+	// 		"target": "/var/lib/postgresql/data",
+	// 		"type": "volume"
+	// 	}
+	// ],
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"cweijan.vscode-postgresql-client2",
-				"jhhtaylor.tabstronaut",
 				"oderwat.indent-rainbow",
 				"burkeholland.simple-react-snippets"
 			]
