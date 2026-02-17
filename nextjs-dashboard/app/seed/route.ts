@@ -8,7 +8,7 @@ const sql = postgres(process.env.POSTGRES_URL!,
   }
 );
 
-async function seedUsers() {
+async function seedUsers(sql: postgres.Sql) {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
   await sql`
     CREATE TABLE IF NOT EXISTS users (
@@ -31,7 +31,7 @@ async function seedUsers() {
   return insertedUsers;
 }
 
-async function seedInvoices() {
+async function seedInvoices(sql: postgres.Sql) {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
   await sql`
     CREATE TABLE IF NOT EXISTS invoices (
@@ -54,7 +54,7 @@ async function seedInvoices() {
   return insertedInvoices;
 }
 
-async function seedCustomers() {
+async function seedCustomers(sql: postgres.Sql) {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
   await sql`
     CREATE TABLE IF NOT EXISTS customers (
@@ -77,7 +77,7 @@ async function seedCustomers() {
   return insertedCustomers;
 }
 
-async function seedRevenue() {
+async function seedRevenue(sql: postgres.Sql) {
   await sql`
     CREATE TABLE IF NOT EXISTS revenue (
       month VARCHAR(4) NOT NULL UNIQUE,
@@ -98,11 +98,11 @@ async function seedRevenue() {
 
 export async function GET() {
   try {
-    const result = await sql.begin(async () => {
-      await seedUsers()
-      await seedCustomers()
-      await seedInvoices()
-      await seedRevenue()
+    const result = await sql.begin(async (sql) => {
+      await seedUsers(sql)
+      await seedCustomers(sql)
+      await seedInvoices(sql)
+      await seedRevenue(sql)
     }
     );
     return Response.json({ result, message: 'Database seeded successfully' });
