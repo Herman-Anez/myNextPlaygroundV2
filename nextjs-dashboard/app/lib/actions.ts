@@ -6,6 +6,15 @@ import postgres from 'postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+export type State = {
+    errors?: {
+        customerId?: string[];
+        amount?: string[];
+        status?: string[];
+    };
+    message?: string | null;
+};
+
 const sql = postgres(process.env.POSTGRES_URL!);
 const FormSchema = z.object({
     id: z.string(),
